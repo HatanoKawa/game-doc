@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Project Erste 文档",
-  base: "game-doc",
+  base: "/game-doc",
   description: "关于Project Erste中各系统及指令的操作手册",
   cleanUrls: true,
   themeConfig: {
