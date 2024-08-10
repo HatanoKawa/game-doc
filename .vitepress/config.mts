@@ -31,6 +31,13 @@ export default defineConfig({
           { text: '行级脚本', link: '/scripts/line-scripts' }
         ]
       },
+      {
+        text: 'table',
+        items: [
+          { text: '条件判断', link: '/tables/conditional-judgement' },
+          { text: 'StoryPerformData 故事对话', link: '/tables/story-dialogue' }
+        ]
+      }
     ],
 
     socialLinks: [
