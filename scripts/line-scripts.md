@@ -116,7 +116,7 @@ createCharacter(Slime, Slime 1, e=true)
 
 ```text
 createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
-createCharacter(Slime, Slime 1, e=true)
+createCharacter(Slime, characterCode=Slime 1, e=true)
 ```
 
 ## sortCharacters 手动排序角色图层
