@@ -19,9 +19,9 @@
 使用示例：
 
 ```text
-SortCharacters(["guardian_1", "guardian_2", "guardian_3"])
+sortCharacters(guardian_1, guardian_2, guardian_3)
 ```
 
 这个例子中，`guardian_1` 会被绘制在最高层，`guardian_2` 会被绘制在中间层，`guardian_3` 会被绘制在最下层，其余角色会按照创建顺序绘制，并且会被绘制在所有手动设置优先级的角色之下。
 
-此函数的详细信息请参考行级脚本章节的 [手动排序角色图层 SortCharacters](../scripts/line-scripts#手动排序角色图层-sortcharacters) 部分。
+此函数的详细信息请参考行级脚本章节的 [手动排序角色图层 sortCharacters](../scripts/line-scripts#sortcharacters-手动排序角色图层) 部分。

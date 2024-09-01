@@ -1,11 +1,124 @@
 # 行级脚本
 
-行级脚本是在一段对话dialogue开始或者结束时触发的脚本，其他的还没想好。
-以下不是一个使用的例子：
+行级脚本是在一段对话 `dialogue` 开始或者结束时触发的脚本，应当在 `MainStoryData.xlsx` 表中的 `StoryPerformData.json` 中的 [commandsOnStart](../tables/story-dialogue#commandsonstart-起始执行脚本) 字段与 <s>commandsOnEnd（当前未实现，有需要再加）</s> 中定义。
+
+以下是一个完整的使用例子：
+
 ```text
-行级脚本应当在MainStoryData.xlsx表中的StoryPerformData.json中的commands数组中定义。
+createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
+[wait]show(Succubus 1) ||
+createCharacter(Slime, Slime 1, e=true)
 ```
 
-## 手动排序角色图层 SortCharacters
+*为便于阅读添加了空格和换行，实际书写时可以自行调整排版，特殊符号（逗号、括号、等号、双竖线等）两侧的不可见字符不影响脚本的执行。*
+
+## 行级脚本的基本结构
+
+一组行级脚本由多个脚本组成，每个脚本之间使用 `||` 分隔，每个脚本的基本结构如下：
+
+- `[wait]` 前缀（非必须），表示此脚本执行完成后才会执行下一个脚本。**（仅可用于协程脚本，非协程脚本添加无效）**
+- `ScriptName` 脚本名称，表示调用的是哪个脚本。
+- `(arg0, arg1, param=value)` 表示调用的参数。
+> 关于参数的说明：
+> - `arg0`、`arg1`为脚本的基本参数，通常会有数个不定量的基本参数，参数之间使用逗号分隔。
+> - `param=value`为脚本的配置参数，通常是**非必填的**，针对特定脚本仅有有限个可以使用的配置参数，参数之间使用逗号分隔，参数名与参数值之间使用等号分隔。
+> - 若脚本没有参数，不可以省略括号，应当使用 `()` 表示没有参数。
+
+## show 显示角色
+
+
+### 基本属性
+
+| 属性      | 值 |
+|---------|---|
+| 是否是协程脚本 | 是 |
+
+### 基本参数
+
+| 参数名               | 说明             | 数量 |
+|-------------------|----------------|----|
+| characterKey 角色标识 | 要切换为显示状态的角色Key | 不限 |
+
+关于角色Key的获取方式，请参考 [角色标识](../system/character-key) 一节的内容。
+
+### 配置参数
+
+| 参数名       | 缩写 | 类型                   | 默认值      | 说明           |
+|-----------|----|----------------------|----------|--------------|
+| immediate | i  | 布尔值（ true \| false ） | 否（false） | 是否跳过过渡动画直接显示 |
+
+### 使用示例
+
+```text
+以下是两个等价的示例：
+
+[wait]show(Succubus 1, Slime 1, immediate=true)
+
+[wait]show(Succubus 1, Slime 1, i=true)
+```
+
+## hide 隐藏角色
+
+### 基本属性
+
+| 属性      | 值 |
+|---------|---|
+| 是否是协程脚本 | 是 |
+
+### 基本参数
+
+| 参数名               | 说明             | 数量 |
+|-------------------|----------------|----|
+| characterKey 角色标识 | 要切换为隐藏状态的角色Key | 不限 |
+
+关于角色Key的获取方式，请参考 [角色标识](../system/character-key) 一节的内容。
+
+### 配置参数
+
+| 参数名       | 缩写 | 类型                   | 默认值      | 说明           |
+|-----------|----|----------------------|----------|--------------|
+| immediate | i  | 布尔值（ true \| false ） | 否（false） | 是否跳过过渡动画直接隐藏 |
+
+### 使用示例
+
+```text
+以下是两个等价的示例：
+
+[wait]hide(Succubus 1, Slime 1, immediate=true)
+
+[wait]hide(Succubus 1, Slime 1, i=true)
+```
+
+## createCharacter 创建角色
+
+用于特殊情况下手动创建角色，通常角色会在对话中自动创建，详细的创建时机请参考 [角色的创建时机](../system/character-key#角色的创建时机) 一节的内容。
+
+### 基本属性
+
+| 属性      | 值 |
+|---------|---|
+| 是否是协程脚本 | 否 |
+
+### 基本参数
+
+| 参数名             | 说明     | 数量 |
+|-----------------|--------|----|
+| characterTempId | 角色模板Id | 1  |
+
+### 配置参数
+
+| 参数名           | 缩写 | 说明             |
+|---------------|----|----------------|
+| characterCode | c  | 角色代码           |
+| enable        | e  | 是否在创建完成后直接显示角色 |
+
+### 使用示例
+
+```text
+createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
+createCharacter(Slime, Slime 1, e=true)
+```
+
+## sortCharacters 手动排序角色图层
 
 todo
