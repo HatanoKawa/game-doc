@@ -6,7 +6,7 @@
 
 角色将会在第一个 [tachieEnterType](../tables/story-dialogue#tachieentertype-角色进场类型)
 或 [tachiePosition](../tables/story-dialogue#tachieposition-角色位置)
-或 [tachieStatus](../tables/story-dialogue#tachiestatus-角色状态)
+或 [tachieStatus](../tables/story-dialogue#tachiestatus-立绘状态)
 不为空的对话行中被创建。\
 或者可以通过调用脚本手动创建角色。
 

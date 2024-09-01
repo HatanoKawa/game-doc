@@ -35,9 +35,9 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 基本参数
 
-| 参数名               | 说明             | 数量 |
-|-------------------|----------------|----|
-| characterKey 角色标识 | 要切换为显示状态的角色Key | 不限 |
+| 参数名               | 说明             | 类型  | 数量 |
+|-------------------|----------------|-----|----|
+| characterKey 角色标识 | 要切换为显示状态的角色Key | 字符串 | 不限 |
 
 关于角色Key的获取方式，请参考 [角色标识](../system/character-key) 一节的内容。
 
@@ -67,9 +67,9 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 基本参数
 
-| 参数名               | 说明             | 数量 |
-|-------------------|----------------|----|
-| characterKey 角色标识 | 要切换为隐藏状态的角色Key | 不限 |
+| 参数名               | 说明             | 类型  | 数量 |
+|-------------------|----------------|-----|----|
+| characterKey 角色标识 | 要切换为隐藏状态的角色Key | 字符串 | 不限 |
 
 关于角色Key的获取方式，请参考 [角色标识](../system/character-key) 一节的内容。
 
@@ -101,9 +101,9 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 基本参数
 
-| 参数名             | 说明     | 数量 |
-|-----------------|--------|----|
-| characterTempId | 角色模板Id | 1  |
+| 参数名             | 说明     | 类型  | 数量 |
+|-----------------|--------|-----|----|
+| characterTempId | 角色模板Id | 字符串 | 1  |
 
 ### 配置参数
 
@@ -111,6 +111,7 @@ createCharacter(Slime, Slime 1, e=true)
 |---------------|----|----------------|
 | characterCode | c  | 角色代码           |
 | enable        | e  | 是否在创建完成后直接显示角色 |
+| immediate     | i  | 是否跳过淡入动画       |
 
 ### 使用示例
 
@@ -118,6 +119,32 @@ createCharacter(Slime, Slime 1, e=true)
 createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
 createCharacter(Slime, characterCode=Slime 1, e=true)
 ```
+## wait 等待
+
+### 基本属性
+
+考虑到wait的效果，wait脚本将强制为协程脚本，这意味着他将必定会延迟后续脚本的触发，无论是否添加`[wait]`前缀。
+
+| 属性      | 值   |
+|---------|-----|
+| 是否是协程脚本 | 强制是 |
+
+### 基本参数
+
+| 参数名  | 说明       | 类型       | 数量 |
+|------|----------|----------|----|
+| time | 延迟时间，单位秒 | 小数 float | 1  |
+
+### 配置参数
+
+无
+
+### 使用示例
+
+```text
+wait(1.5)
+```
+
 
 ## sortCharacters 手动排序角色图层
 
