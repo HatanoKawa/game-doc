@@ -28,7 +28,10 @@ export default defineConfig({
         text: '脚本',
         items: [
           { text: '内联脚本', link: '/scripts/inline-scripts' },
-          { text: '行级脚本', link: '/scripts/line-scripts' }
+          { text: '行级脚本', link: '/scripts/line-scripts' },
+          { text: '动画概述', link: '/scripts/animation' },
+          { text: '循环动画', link: '/scripts/animation-loop' },
+          { text: '单次动画', link: '/scripts/animation-once' }
         ]
       },
       {
