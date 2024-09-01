@@ -37,6 +37,13 @@ export default defineConfig({
           { text: '条件判断', link: '/tables/conditional-judgement' },
           { text: 'StoryPerformData 故事对话', link: '/tables/story-dialogue' }
         ]
+      },
+      {
+        text: '系统说明',
+        items: [
+          { text: '角色图层与优先级', link: '/system/character-layer-and-priority' },
+          { text: '角色标识', link: '/system/character-key' },
+        ]
       }
     ],
 

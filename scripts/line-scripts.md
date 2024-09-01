@@ -6,3 +6,6 @@
 行级脚本应当在MainStoryData.xlsx表中的StoryPerformData.json中的commands数组中定义。
 ```
 
+## 手动排序角色图层 SortCharacters
+
+todo
