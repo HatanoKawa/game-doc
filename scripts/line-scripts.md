@@ -5,12 +5,12 @@
 以下是一个完整的使用例子：
 
 ```text
-createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
-[wait]show(Succubus 1) ||
-createCharacter(Slime, Slime 1, e=true)
+createCharacter(Succubus, characterCode=Succubus_1, enable=false) ||
+[wait]show(Succubus_1) ||
+createCharacter(Slime, Slime_1, e=true)
 ```
 
-*为便于阅读添加了空格和换行，实际书写时可以自行调整排版，特殊符号（逗号、括号、等号、双竖线等）两侧的不可见字符不影响脚本的执行。*
+*本节的示例部分为便于阅读添加了空格和换行，实际书写时可以自行调整排版，特殊符号（逗号、括号、等号、双竖线等）两侧的不可见字符不影响脚本的执行。*
 
 ## 行级脚本的基本结构
 
@@ -21,7 +21,7 @@ createCharacter(Slime, Slime 1, e=true)
 - `(arg0, arg1, param=value)` 表示调用的参数。
 > 关于参数的说明：
 > - `arg0`、`arg1`为脚本的基本参数，通常会有数个不定量的基本参数，参数之间使用逗号分隔。
-> - `param=value`为脚本的配置参数，通常是**非必填的**，针对特定脚本仅有有限个可以使用的配置参数，参数之间使用逗号分隔，参数名与参数值之间使用等号分隔。
+> - `param=value`为脚本的配置参数，不分先后，通常是**非必填的**，针对特定脚本仅有有限个可以使用的配置参数，参数之间使用逗号分隔，参数名与参数值之间使用等号分隔。
 > - 若脚本没有参数，不可以省略括号，应当使用 `()` 表示没有参数。
 
 ## show 显示角色
@@ -43,18 +43,21 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 配置参数
 
-| 参数名       | 缩写 | 类型                   | 默认值      | 说明           |
-|-----------|----|----------------------|----------|--------------|
-| immediate | i  | 布尔值（ true \| false ） | 否（false） | 是否跳过过渡动画直接显示 |
+| 参数名       | 缩写 | 类型          | 默认值   | 说明           |
+|-----------|----|-------------|-------|--------------|
+| immediate | i  | 布尔值 boolean | false | 是否跳过过渡动画直接显示 |
 
 ### 使用示例
 
 ```text
-以下是两个等价的示例：
+[wait]show(Succubus_1)
 
-[wait]show(Succubus 1, Slime 1, immediate=true)
+show(Succubus_1, Slime_1, Generic_1)
 
-[wait]show(Succubus 1, Slime 1, i=true)
+以下是三个等价的示例：
+[wait]show(Succubus_1, Slime_1, immediate=false)
+[wait]show(Succubus_1, Slime_1, i=false)
+[wait]show(Succubus_1, Slime_1)
 ```
 
 ## hide 隐藏角色
@@ -75,18 +78,21 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 配置参数
 
-| 参数名       | 缩写 | 类型                   | 默认值      | 说明           |
-|-----------|----|----------------------|----------|--------------|
-| immediate | i  | 布尔值（ true \| false ） | 否（false） | 是否跳过过渡动画直接隐藏 |
+| 参数名       | 缩写 | 类型          | 默认值   | 说明           |
+|-----------|----|-------------|-------|--------------|
+| immediate | i  | 布尔值 boolean | false | 是否跳过过渡动画直接隐藏 |
 
 ### 使用示例
 
-```text
-以下是两个等价的示例：
+```
+[wait]hide(Succubus_1)
 
-[wait]hide(Succubus 1, Slime 1, immediate=true)
+hide(Succubus_1, Slime_1, Generic_1)
 
-[wait]hide(Succubus 1, Slime 1, i=true)
+以下是三个等价的示例：
+[wait]hide(Succubus_1, Slime_1, immediate=false)
+[wait]hide(Succubus_1, Slime_1, i=false)
+[wait]hide(Succubus_1, Slime_1)
 ```
 
 ## createCharacter 创建角色
@@ -107,17 +113,19 @@ createCharacter(Slime, Slime 1, e=true)
 
 ### 配置参数
 
-| 参数名           | 缩写 | 说明             |
-|---------------|----|----------------|
-| characterCode | c  | 角色代码           |
-| enable        | e  | 是否在创建完成后直接显示角色 |
-| immediate     | i  | 是否跳过淡入动画       |
+| 参数名           | 缩写 | 类型          | 默认值   | 说明             |
+|---------------|----|-------------|-------|----------------|
+| characterCode | c  | 字符串 string  |       | 角色代码           |
+| enable        | e  | 布尔值 boolean | false | 是否在创建完成后直接显示角色 |
+| immediate     | i  | 布尔值 boolean | false | 是否跳过淡入动画       |
 
 ### 使用示例
 
 ```text
-createCharacter(Succubus, characterCode=Succubus 1, enable=false) ||
-createCharacter(Slime, characterCode=Slime 1, e=true)
+createCharacter(Succubus)
+createCharacter(Slime, e=true)
+createCharacter(Slime, c=Slime_1, e=true)
+createCharacter(Succubus, characterCode=Succubus_1, enable=false)
 ```
 ## wait 等待
 
