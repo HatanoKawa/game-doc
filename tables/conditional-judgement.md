@@ -4,112 +4,77 @@
 - 在control-node类型的文本节点中，用于根据条件判断触发不同的分支或者执行不同的操作。
 - 配置行为的解锁条件。
 
-## 语法
+在解析时，除了and与or关键字两侧外的不可见字符会被忽略。
 
-此类单元格中，可输入单条条件，也可以输入多条条件，多条条件情况下遵循JSON语法。
+## 示例
 
-单条条件示例：（条件类型为`BiggerThan`，比较对象为`charm`，比较值为20，含义为魅力值大于20）
-
-```json
-{
-    "conditionType": "BiggerThan",
-    "compareId": "charm",
-    "compareValue": 20
-}
-```
-
-简化语法：
 ```text
-charm>20
+逻辑判断：
+charm > 50 and intelligence > 30
+(charm > 40 and intelligence < 20 and round > 5) or (charm < 30 and intelligence > 50)
+
+赋值操作：
+charm += round * 10 - (round + 2) * 5
 ```
 
-多条条件示例：（条件类型为`And`，包含两个条件，第一个条件为`BiggerThan`，比较对象为`charm`，比较值为20，第二个条件为`BiggerThan`，比较对象为`intelligence`，比较值为30，含义为魅力值大于20且智力值大于30）
+## 注意事项
 
-```json
-{
-    "conditionType": "And",
-    "conditions": [
-        {
-            "conditionType": "BiggerThan",
-            "compareId": "charm",
-            "compareValue": 20
-        },
-        {
-            "conditionType": "BiggerThan",
-            "compareId": "intelligence",
-            "compareValue": 30
-        }
-    ]
-}
-```
-简化语法：
+- 逻辑判断等于符号（`==`）在进行数字比较时是基于一定精度的，可能会出现精度误差，当前的精度为 `0.01`。
+
+## 运算逻辑
+
+本功能遵循常见的逻辑和算术运算规则，即优先级为从高到低：
+- 括号
+- 取反或取负（! -）
+- 乘除法(* /)
+- 加减法(+ -)
+- 比较运算符(> >= < <=)
+- 等于运算符(== !=)
+
+
+## 可识别元素
+
+| 元素类型  | 含义                    | 示例                   |
+|-------|-----------------------|----------------------|
+| int   | 数字类型的值                | `120`                |
+| float | 小数类型的值                | `4.5`                |
+| bool  | 布尔值                   | `true`, `false`      |
+| str   | 字符串                   | `"name"`, `"char_1"` |
+| var   | 内置变量，计算时将会被内置变量的实际值替换 | `charm`              |
+
+## 关键字
+
+| 关键字 | 含义             | 示例                                               |
+|-----|----------------|--------------------------------------------------|
+| -   | 数学运算减 或 取负值    | `charm < stamina - 20`, `-charm <= stamina - 50` |
+| +   | 数学运算加          | `charm > 50 + intelligence`                      |
+| *   | 数学运算乘          | `charm > 50 + round`                             |
+| /   | 数学运算除          | `charm < 50 / round`                             |
+| !   | 逻辑运算取反         | `!isVrigin`                                      |
+| ==  | 逻辑运算相等         | `charm == 30`                                    |
+| !=  | 逻辑运算不等         | `charm != 30`                                    |
+| \>  | 逻辑运算大于         | `charm > 30`                                     |
+| \>= | 逻辑运算大于等于       | `charm >= 30`                                    |
+| <   | 逻辑运算小于         | `charm < 30`                                     |
+| <=  | 逻辑运算小于等于       | `charm <= 30`                                    |
+| and | 逻辑运算且          | `charm > 30 and round < 5`                       |
+| or  | 逻辑运算或          | `charm > 100 or round < 15`                      |
+| ()  | 括号，用于强制提升计算优先级 | `charm < (round + 5) * 50`                       |
+| =   | 直接赋值，仅用于更改单个属性 | `charm = charm + 10`                             |
+| +=  | 赋值，仅用于更改单个属性   | `charm += 10` 等价于 `charm = charm + 10`           |
+| -=  | 赋值，仅用于更改单个属性   | `charm -= 10` 等价于 `charm = charm - 10`           |
+| *=  | 赋值，仅用于更改单个属性   | `charm *= 2`  等价于 `charm = charm * 2`            |
+| /=  | 赋值，仅用于更改单个属性   | `charm /= 2`  等价于 `charm = charm / 2`            |
+
+
+## 语法规则参考
+
 ```text
-and(charm>20,intelligence>30)
+expression     → equality ;
+equality       → comparison ( ( "!=" | "==" ) comparison )* ;
+comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+term           → factor ( ( "-" | "+" ) factor )* ;
+factor         → unary ( ( "/" | "*" ) unary )* ;
+unary          → ( "!" | "-" ) unary | primary ;
+primary        → NUMBER | STRING | true | false | var | "(" expression ")" ;
 ```
-或者：
-```text
-charm>20,intelligence>30
-```
-
-## conditionType参数及示例
-
-| 说明   | conditionType      | 示例                                                                                   | 简化语法        |
-|------|--------------------|--------------------------------------------------------------------------------------|-------------|
-| 大于   | BiggerThan         | `{ "conditionType": "BiggerThan", "compareId": "charm", "compareValue": 20 }`        | `charm>20`  |
-| 大于等于 | BiggerThanOrEqual  | `{ "conditionType": "BiggerThanOrEqual", "compareId": "charm", "compareValue": 20 }` | `charm>=20` |
-| 小于   | SmallerThan        | `{ "conditionType": "BiggerThan", "compareId": "charm", "compareValue": 20 }`        | `charm<20`  |
-| 小于等于 | SmallerThanOrEqual | `{ "conditionType": "BiggerThanOrEqual", "compareId": "charm", "compareValue": 20 }` | `charm<=20` |
-| 为真   | IsTrue             | `{ "conditionType": "IsTrue", "compareId": "virgin"}`                                | `virgin`    |
-| 为假   | IsFalse            | `{ "conditionType": "IsFalse", "compareId": "virgin"}`                               | `!virgin`   |
-
-## 多条件组合
-
-**由于实现难度问题，暂不支持简化语法中and与or的混合使用，如需混合使用，需要使用JSON语法。**
-
-
-多条件组合示例：（条件类型为`Or`，包含两个条件，第一个条件为`BiggerThan`，比较对象为`charm`，比较值为20，第二个条件为`BiggerThan`，比较对象为`intelligence`，比较值为30，含义为魅力值大于20或智力值大于30）
-
-```json
-{
-    "conditionType": "Or",
-    "conditions": [
-        {
-            "conditionType": "BiggerThan",
-            "compareId": "charm",
-            "compareValue": 20
-        },
-        {
-            "conditionType": "BiggerThan",
-            "compareId": "intelligence",
-            "compareValue": 30
-        },
-        {
-            "conditionType": "IsFalse",
-            "compareId": "virgin"
-        }
-    ]
-}
-```
-
-### 简化语法多条件组合方式：
-1. 使用逗号分隔多个条件。
-2. 在开头使用or或者and关键字，表示多个条件之间的关系，如果不指定，默认为and关系。
-
-上方示例对应的简化语法示例：
-```text
-or(charm>20,intelligence>30,!virgin)
-```
-
-## 可读性
-
-在书写简化判断条件时，为了提高可读性可以任意使用空格、换行等空白字符，在解析时会自动忽略这些空白字符。
-
-手动分割的示例：
-```text
-or(
-    charm > 20,
-    intelligence > 30,
-    !virgin
-)
-```
-
