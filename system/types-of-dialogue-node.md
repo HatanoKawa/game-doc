@@ -19,19 +19,19 @@
 
 ### 相关属性
 
-| 字段名                     | 说明                                                        | 示例                                                                          |
-|-------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------|
-| [nodeOption]节点设置        | 普通对话节点无节点设置项，故此项固定为空                                      |                                                                             |
-| [bgpName]背景图变更          | 相当于直接调用 [行级脚本 SetLayerMedia]()，与可填入的参数格式一致                | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
-| [bgmName]音乐变更           | 相当于直接调用 [行级脚本 PlaySong]()，与可填入的参数格式一致                     | `Theme_21, l=true`                                                          |
-| [characterTempId]角色模板Id | 说话人的模板Id，决定说话人的立绘、名称等的默认配置                                |                                                                             |
-| [characterCode]角色代码     | 当多个角色使用同一个模板时，用于给角色做区分                                    |                                                                             |
-| [speakerName]对话角色名文本    | 可为空，若不为空将会强制将对话者的姓名改为所填内容                                 |                                                                             |
-| [dialogText]对话内容文本      | 对话的实际文本                                                   | `这是一句<color=red>普通的</color>对话文本。`                                           |
-| [tachiePosition]立绘入场位置  | 二元数组，分别代表立绘在横轴和纵轴上的位置，纵轴0代表贴左边缘，1代表贴右边缘，横轴0代表贴下边缘，1代表贴上边缘 | `[1, 0]`                                                                    |
-| [tachieEnterType]立绘入场方式 | 当前接受两个值 `direct` , `fade` 代表直接显示和淡入，相当于直接调用 [行级脚本 Show]() |                                                                             |
-| [tachieStatus]立绘状态      | 设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite]()            | `smile, l=0`                                                                |
-| [commandsOnStart]开始触发   | 在对话开始时触发的脚本，格式遵循 [行级脚本]()                                 | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
+| 字段名                     | 说明                                                                                                   | 示例                                                                          |
+|-------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| [nodeOption]节点设置        | 普通对话节点无节点设置项，故此项固定为空                                                                                 |                                                                             |
+| [bgpName]背景图变更          | 相当于直接调用 [行级脚本 SetLayerMedia](../scripts/line-scripts#setlayermedia-设置背景图层媒体)，与可填入的参数格式一致             | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
+| [bgmName]音乐变更           | 相当于直接调用 [行级脚本 PlaySong](../scripts/line-scripts#playsong-播放背景音乐)，与可填入的参数格式一致                         | `Theme_21, l=true`                                                          |
+| [characterTempId]角色模板Id | 说话人的模板Id，决定说话人的立绘、名称等的默认配置                                                                           |                                                                             |
+| [characterCode]角色代码     | 当多个角色使用同一个模板时，用于给角色做区分                                                                               |                                                                             |
+| [speakerName]对话角色名文本    | 可为空，若不为空将会强制将对话者的姓名改为所填内容                                                                            |                                                                             |
+| [dialogText]对话内容文本      | 对话的实际文本                                                                                              | `这是一句<color=red>普通的</color>对话文本。`                                           |
+| [tachiePosition]立绘入场位置  | 二元数组，分别代表立绘在横轴和纵轴上的位置，纵轴0代表贴左边缘，1代表贴右边缘，横轴0代表贴下边缘，1代表贴上边缘                                            | `[1, 0]`                                                                    |
+| [tachieEnterType]立绘入场方式 | 当前接受两个值 `direct` , `fade` 代表直接显示和淡入，相当于直接调用 [行级脚本 Show](../scripts/line-scripts-character#show-显示角色) |                                                                             |
+| [tachieStatus]立绘状态      | 设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite](../scripts/line-scripts-character#setsprite-设置立绘)       | `smile, l=0`                                                                |
+| [commandsOnStart]开始触发   | 在对话开始时触发的脚本，格式遵循 [行级脚本](../scripts/line-scripts)                                                     | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
 
 
 ## 片段对话节点
@@ -56,18 +56,18 @@
 
 ### 相关属性
 
-| 字段名                     | 说明                                                        | 示例                                                                          |
-|-------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------|
-| [nodeOption]节点设置        | 片段对话节点的配置项为一个字符串，格式形如等待输入 `WI` 或者等待时间 `WT <time>` 单位为秒。   | WT 2.5                                                                      |
-| [bgpName]背景图变更          | 相当于直接调用 [行级脚本 SetLayerMedia]()，与可填入的参数格式一致                | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
-| [bgmName]音乐变更           | 相当于直接调用 [行级脚本 PlaySong]()，与可填入的参数格式一致                     | `Theme_21, l=true`                                                          |
-| [characterTempId]角色模板Id | **将沿用上一条普通对话节点或片段对话节点的设置**                                |                                                                             |
-| [characterCode]角色代码     | **将沿用上一条普通对话节点或片段对话节点的设置**                                |                                                                             |
-| [speakerName]对话角色名文本    | 可为空，若不为空将会强制将对话者的姓名改为所填内容                                 |                                                                             |
-| [dialogText]对话内容文本      | 对话的实际文本，将会添加在已有的文本之后                                      | `这是一句<color=red>普通的</color>对话文本。`                                           |
-| [tachieEnterType]立绘入场方式 | 当前接受两个值 `direct` , `fade` 代表直接显示和淡入，相当于直接调用 [行级脚本 Show]() |                                                                             |
-| [tachieStatus]立绘状态      | 设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite]()            | `smile, l=0`                                                                |
-| [commandsOnStart]开始触发   | 在对话开始时触发的脚本，格式遵循 [行级脚本]()                                 | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
+| 字段名                     | 说明                                                                                                   | 示例                                                                          |
+|-------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| [nodeOption]节点设置        | 片段对话节点的配置项为一个字符串，格式形如等待输入 `WI` 或者等待时间 `WT <time>` 单位为秒。                                              | WT 2.5                                                                      |
+| [bgpName]背景图变更          | 相当于直接调用 [行级脚本 SetLayerMedia](../scripts/line-scripts#setlayermedia-设置背景图层媒体)，与可填入的参数格式一致             | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
+| [bgmName]音乐变更           | 相当于直接调用 [行级脚本 PlaySong](../scripts/line-scripts#playsong-播放背景音乐)，与可填入的参数格式一致                         | `Theme_21, l=true`                                                          |
+| [characterTempId]角色模板Id | **将沿用上一条普通对话节点或片段对话节点的设置**                                                                           |                                                                             |
+| [characterCode]角色代码     | **将沿用上一条普通对话节点或片段对话节点的设置**                                                                           |                                                                             |
+| [speakerName]对话角色名文本    | 可为空，若不为空将会强制将对话者的姓名改为所填内容                                                                            |                                                                             |
+| [dialogText]对话内容文本      | 对话的实际文本，将会添加在已有的文本之后                                                                                 | `这是一句<color=red>普通的</color>对话文本。`                                           |
+| [tachieEnterType]立绘入场方式 | 当前接受两个值 `direct` , `fade` 代表直接显示和淡入，相当于直接调用 [行级脚本 Show](../scripts/line-scripts-character#show-显示角色) |                                                                             |
+| [tachieStatus]立绘状态      | 设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite](../scripts/line-scripts-character#setsprite-设置立绘)       | `smile, l=0`                                                                |
+| [commandsOnStart]开始触发   | 在对话开始时触发的脚本，格式遵循 [行级脚本](../scripts/line-scripts)                                                     | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
 
 ### 与普通对话节点的区别与使用说明
 
@@ -129,13 +129,13 @@
 
 ### 相关属性
 
-| 字段名                   | 说明                                                                                                             | 示例                                                                              |
-|-----------------------|----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [nodeOption]节点设置      | 控制节点一般用于在特定条件下执行特定脚本或跳转到指定的对话Id，`condition` 字段格式遵循 [条件判断]()， `commands` 字段格式遵循 [行级脚本](../scripts/line-scripts) |                                                                                 |
-| [bgpName]背景图变更        | 相当于直接调用 [行级脚本 SetLayerMedia]()，与可填入的参数格式一致                                                                     | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`                  |
-| [bgmName]音乐变更         | 相当于直接调用 [行级脚本 PlaySong]()，与可填入的参数格式一致                                                                          | `Theme_21, l=true`                                                              |
-| [dialogText]对话内容文本    | 对话的实际文本                                                                                                        | `这是一句<color=red>普通的</color>对话文本。`                                               |
-| [commandsOnStart]开始触发 | 在对话开始时触发的脚本，格式遵循 [行级脚本](../scripts/line-scripts)                                                               | PlaySFX(thunder_strong_01, l=true) \|\| wait(2) \|\| StopSFX(thunder_strong_01) |
+| 字段名                   | 说明                                                                                                                                            | 示例                                                                              |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [nodeOption]节点设置      | 控制节点一般用于在特定条件下执行特定脚本或跳转到指定的对话Id，`condition` 字段格式遵循 [条件判断](../tables/conditional-judgement)， `commands` 字段格式遵循 [行级脚本](../scripts/line-scripts) |                                                                                 |
+| [bgpName]背景图变更        | 相当于直接调用 [行级脚本 SetLayerMedia](../scripts/line-scripts#setlayermedia-设置背景图层媒体)，与可填入的参数格式一致                                                      | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`                  |
+| [bgmName]音乐变更         | 相当于直接调用 [行级脚本 PlaySong](../scripts/line-scripts#playsong-播放背景音乐)，与可填入的参数格式一致                                                                  | `Theme_21, l=true`                                                              |
+| [dialogText]对话内容文本    | 对话的实际文本                                                                                                                                       | `这是一句<color=red>普通的</color>对话文本。`                                               |
+| [commandsOnStart]开始触发 | 在对话开始时触发的脚本，格式遵循 [行级脚本](../scripts/line-scripts)                                                                                              | PlaySFX(thunder_strong_01, l=true) \|\| wait(2) \|\| StopSFX(thunder_strong_01) |
 
 
 ## 选择支节点
@@ -180,13 +180,13 @@
 ### 相关属性
 
 
-| 字段名                   | 说明                                                                                | 示例                                                                          |
-|-----------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| [nodeOption]节点设置      | 用于配置选择支节点的选项和行为，格式见上方的例子，`commands` 字段格式遵循 [行级脚本](../scripts/line-scripts)        |                                                                             |
-| [bgpName]背景图变更        | 相当于直接调用 [行级脚本 SetLayerMedia]()，与可填入的参数格式一致                                        | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
-| [bgmName]音乐变更         | 相当于直接调用 [行级脚本 PlaySong]()，与可填入的参数格式一致                                             | `Theme_21, l=true`                                                          |
-| [dialogText]对话内容文本    | 由 `\|\|` 分割不同选项的文字，若数量比 `nodeOptions` 多1，则第一个选项会作为标题，否则应当与 `nodeOptions` 中的选项一一对应 | `该如何回答？\|\| 我有意见 \|\| 我没意见` 或 `我有意见 \|\| 我没意见`                              |
-| [commandsOnStart]开始触发 | 在对话开始时触发的脚本，格式遵循 [行级脚本]()                                                         | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
+| 字段名                   | 说明                                                                                       | 示例                                                                          |
+|-----------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| [nodeOption]节点设置      | 用于配置选择支节点的选项和行为，格式见上方的例子，`commands` 字段格式遵循 [行级脚本](../scripts/line-scripts)               |                                                                             |
+| [bgpName]背景图变更        | 相当于直接调用 [行级脚本 SetLayerMedia](../scripts/line-scripts#setlayermedia-设置背景图层媒体)，与可填入的参数格式一致 | `p=Background, m=Fantasy Landscape, blend=hurricane, aud=true`              |
+| [bgmName]音乐变更         | 相当于直接调用 [行级脚本 PlaySong](../scripts/line-scripts#playsong-播放背景音乐)，与可填入的参数格式一致             | `Theme_21, l=true`                                                          |
+| [dialogText]对话内容文本    | 由 `\|\|` 分割不同选项的文字，若数量比 `nodeOptions` 多1，则第一个选项会作为标题，否则应当与 `nodeOptions` 中的选项一一对应        | `该如何回答？\|\| 我有意见 \|\| 我没意见` 或 `我有意见 \|\| 我没意见`                              |
+| [commandsOnStart]开始触发 | 在对话开始时触发的脚本，格式遵循 [行级脚本](../scripts/line-scripts)                                         | PlaySFX(thunder_strong_01, l=true)\|\|wait(2)\|\|StopSFX(thunder_strong_01) |
 
 
 ## 输入框节点

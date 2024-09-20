@@ -34,7 +34,7 @@
  
 ## tachieStatus 立绘状态
 
-设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite]()
+设定立绘的状态，若不指定会使用默认状态，相当于直接调用 [行级脚本 SetSprite](../scripts/line-scripts-character#setsprite-设置立绘)
 
 对于单图层的角色，设置方式为：
 ```text

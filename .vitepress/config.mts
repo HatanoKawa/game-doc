@@ -30,11 +30,10 @@ export default defineConfig({
       {
         text: '脚本',
         items: [
+          { text: '行级脚本【通用】', link: '/scripts/line-scripts' },
+          { text: '行级脚本【角色】', link: '/scripts/line-scripts-character' },
+          { text: '角色动画', link: '/scripts/animation' },
           { text: '内联脚本（已废弃）', link: '/scripts/inline-scripts' },
-          { text: '行级脚本', link: '/scripts/line-scripts' },
-          { text: '动画概述', link: '/scripts/animation' },
-          { text: '循环动画', link: '/scripts/animation-loop' },
-          { text: '单次动画', link: '/scripts/animation-once' }
         ]
       },
       {
