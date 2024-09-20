@@ -37,7 +37,7 @@ export default defineConfig({
         ]
       },
       {
-        text: 'table',
+        text: '表格相关',
         items: [
           { text: '条件判断', link: '/tables/conditional-judgement' },
           { text: 'StoryPerformData 故事对话', link: '/tables/story-dialogue' }
@@ -46,9 +46,10 @@ export default defineConfig({
       {
         text: '系统说明',
         items: [
-          { text: '角色图层与优先级', link: '/system/character-layer-and-priority' },
-          { text: '角色标识', link: '/system/character-key' },
           { text: '对话节点类型', link: '/system/types-of-dialogue-node' },
+          { text: '角色标识', link: '/system/character-key' },
+          { text: '角色图层与优先级', link: '/system/character-layer-and-priority' },
+          { text: '对话界面图层说明', link: '/system/layer-order' },
         ]
       }
     ],
