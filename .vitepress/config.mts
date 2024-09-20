@@ -50,6 +50,7 @@ export default defineConfig({
           { text: '角色标识', link: '/system/character-key' },
           { text: '角色图层与优先级', link: '/system/character-layer-and-priority' },
           { text: '对话界面图层说明', link: '/system/layer-order' },
+          { text: '章节系统说明', link: '/system/chapter-system' },
         ]
       }
     ],
