@@ -5,9 +5,9 @@
 以下是一个完整的使用例子：
 
 ```text
-createCharacter(Succubus, characterCode=Succubus_1, enable=false) ||
-[wait]show(Succubus_1) ||
-createCharacter(Slime, Slime_1, e=true)
+CreateCharacter(Succubus, characterCode=Succubus_1, enable=false) ||
+[wait]Show(Succubus_1) ||
+CreateCharacter(Slime, c=Slime_1, e=true)
 ```
 
 *本节的示例部分为便于阅读添加了空格和换行，实际书写时可以自行调整排版，特殊符号（逗号、括号、等号、双竖线等）两侧的不可见字符不影响脚本的执行。*
